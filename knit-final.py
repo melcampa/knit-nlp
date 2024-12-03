@@ -83,21 +83,6 @@ def format_pattern(rows):
     """
     return ';\n'.join(rows) + ' ;'
 
-# Example usage
-start = ['k1', 'p1']  # Starting sequence for the generator
-stitches_per_row = 8  # Target stitches per row
-num_rows = 7  # Number of rows to generate
-
-generated_rows = generate_pattern(ngrams, start, stitches_per_row, num_rows)
-
-# Format the generated pattern
-formatted_pattern = format_pattern(generated_rows)
-
-# Display the output
-print("Generated Knitting Pattern:")
-print(formatted_pattern)
-
-
 
 def count_stitches(row):
     """
