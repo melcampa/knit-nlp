@@ -1,0 +1,52 @@
+1.
+
+Simple square
+
+< k1 k1 k1 k1 ;
+k1 k1 k1 k1 ;
+k1 k1 k1 k1 ;
+k1 k1 k1 k1 ; >
+
+2. 
+
+Simple ribbing
+
+< k1 p1 k1 p1 ;
+k1 p1 k1 p1 ;
+k1 p1 k1 p1 ;
+k1 p1 k1 p1 ; >
+
+3.
+
+Garter stitch
+
+< k1 k1 k1 k1 ;
+p1 p1 p1 p1 ;
+k1 k1 k1 k1 ;
+p1 p1 p1 p1 ; >
+
+4.
+
+Purl one, knit one (simple ribbing alternative)
+
+< p1 k1 p1 k1 ;
+p1 k1 p1 k1 ;
+p1 k1 p1 k1 ;
+p1 k1 p1 k1 ; >
+
+5. 
+
+Knit one, purl two
+
+< k1 p1 p1 k1 p1 p1 k1 p1 p1 ;
+k1 p1 p1 k1 p1 p1 k1 p1 p1 ;
+k1 p1 p1 k1 p1 p1 k1 p1 p1 ;
+k1 p1 p1 k1 p1 p1 k1 p1 p1 ; >
+
+6.
+
+Increase 3->6
+
+< k1 k1 k1 ;
+kfb kfb kfb ;
+k1 k1 k1 k1 k1 k1 ; >
