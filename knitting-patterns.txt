@@ -50,3 +50,12 @@ Increase 3->6
 < k1 k1 k1 ;
 kfb kfb kfb ;
 k1 k1 k1 k1 k1 k1 ; >
+
+7.
+
+Decrease 6->3
+
+< k1 k1 k1 k1 k1 k1 ;
+k2tog k2tog k2tog ;
+k1 k1 k1 ;
+ >

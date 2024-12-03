@@ -39,7 +39,7 @@ for i in range(len(tokens) - n):
     ngrams[key].append(next_token)
 
 # Step 4: Generate a Knitting Pattern
-def generate_pattern(ngrams, start_tokens, stitches_per_row, num_rows=5):
+def generate_pattern(ngrams, start_tokens, stitches_per_row, num_rows):
     """
     Generates a knitting pattern dynamically to meet the target stitches per row.
 
@@ -50,26 +50,36 @@ def generate_pattern(ngrams, start_tokens, stitches_per_row, num_rows=5):
     :return: List of rows with knitting instructions
     """
     rows = []
+    previous_stitches = stitches_per_row
     for _ in range(num_rows):
+        print(previous_stitches)
         current = tuple(start_tokens)
         row = list(current)
-        total_stitches = len(start_tokens)  # Initialize stitch count
+        total_stitches = previous_stitches  # Initialize stitch count
+        
 
-        while total_stitches < stitches_per_row:
+        for i in range (1, previous_stitches):
             if current in ngrams:
                 next_token = random.choice(ngrams[current])
                 row.append(next_token)
+                #print(next_token)
 
                 # Update stitch count for `kfb`
                 if next_token == 'kfb':
                     total_stitches += 1  # Add one extra stitch for `kfb`
+                
+                # Update stitch count for `k2tog`
+                if next_token == 'k2tog':
+                    total_stitches -= 1  # Remove one extra stitch for `k2tog`
 
-                total_stitches += 1  # General token adds one stitch
+                #total_stitches += 1  # General token adds one stitch
                 current = tuple(row[-n+1:])  # Update current context
+                #print(current)
             else:
                 break  # Stop if no continuation is found
-
-        rows.append(' '.join(row[:stitches_per_row]))  # Trim row to target stitches
+        #print(total_stitches)
+        rows.append(' '.join(row[:total_stitches]))  # Trim row to target stitches
+        previous_stitches = len(row[:total_stitches])
 
     return rows
 
@@ -90,22 +100,24 @@ def count_stitches(row):
     :param row: A string representing a row of knitting instructions.
     :return: The total number of stitches in the row.
     """
-    stitches = row.split()  # Split the row into individual stitches
+    #stitches = row.split()  # Split the row into individual stitches
     count = 0
 
-    for stitch in stitches:
+    for stitch in row:
         count += 1  # Each token typically represents one stitch
         if stitch == 'kfb':  # Handle 'kfb', which adds an extra stitch
             count += 1
+        if stitch == 'k2tog':  # Handle 'k2tog', which deletes an extra stitch
+            count -= 2
 
-    print(f"Row: '{row}' -> Stitches: {count}")
+    #print(f"Row: '{row}' -> Stitches: {count}")
     return count
 
 
 # Example usage
-start = ['k1', 'kfb']  # Starting sequence for the generator
-stitches_per_row = 8  # Target stitches per row
-num_rows = 7  # Number of rows to generate
+start = ['k1', 'k1']  # Starting sequence for the generator
+stitches_per_row = 8  # Starting stitches per row
+num_rows = 4  # Number of rows to generate
 
 generated_rows = generate_pattern(ngrams, start, stitches_per_row, num_rows)
 
@@ -116,6 +128,6 @@ formatted_pattern = format_pattern(generated_rows)
 print("Generated Knitting Pattern:")
 print(formatted_pattern)
 
-stitch_counts = [count_stitches(row) for row in generated_rows]
+#stitch_counts = [count_stitches(row) for row in generated_rows]
 
-print(stitch_counts)
+#print(stitch_counts)
