@@ -1,0 +1,11 @@
+CO 77
+Round 1: (knit 8, k2tog) around.
+Round 2 and all even rounds: knit.
+Round 3: (knit 7, k2tog) around.
+Round 5: (knit 6, k2tog) around.
+Round 7: (knit 5, k2tog) around.
+Round 9: (knit 4, k2tog) around.
+Round 11: (knit 3, k2tog) around.
+Round 13: (knit 2, k2tog) around.
+Round 15: (knit 1, k2tog) around.
+Round 17: (k2tog) around

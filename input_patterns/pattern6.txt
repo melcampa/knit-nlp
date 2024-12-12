@@ -1,0 +1,5 @@
+CO 18
+Row 1: Slip first ST purlwise *K1, YO, Slip next ST purlwise* rep to last ST, purl 1
+Row 2: slip first ST purlwise *BrK, YO, Slip next ST purlwise* rep to last ST, purl 1
+Row 3: repeat row 1
+Row 4: Repeat row 2
