@@ -6,15 +6,16 @@ from collections import defaultdict
 def load_patterns_from_folder(folder_path):
     patterns = []
     for filename in os.listdir(folder_path):
-        if filename.endswith('.txt'):
-            with open(os.path.join(folder_path, filename), 'r') as file:
+        if filename.endswith(".txt"):
+            file_path = os.path.join(folder_path, filename)
+            with open(file_path, "r", encoding="utf-8") as file: 
                 patterns.append(file.read())
     return patterns
 
 # Step 2: Preprocess the Corpus
 # Normalize the case, split patterns, and handle commas
-corpus = ' '.join(load_patterns_from_folder('input_patterns'))  # Load all patterns from files in 'data'
-corpus = corpus.lower()  # Normalize case
+corpus = ' '.join(load_patterns_from_folder('C:\\Users\\chipr\\OneDrive\\Desktop\\final\\knit-nlp\\input_patterns'))  # Load all patterns from files in 'data'
+corpus = corpus.lower() 
 
 tokens = corpus.split()
 
@@ -37,7 +38,6 @@ def generate_pattern(unigrams, start_tokens, num_rows=5):
     """
     rows = []
     
-    # Convert the unigram dictionary to a list of tokens, weighted by their frequency
     weighted_tokens = []
     for token, freq in unigrams.items():
         weighted_tokens.extend([token] * freq)
@@ -46,7 +46,7 @@ def generate_pattern(unigrams, start_tokens, num_rows=5):
         row = list(start_tokens)
         
         # Generate the rest of the row based on the unigram model
-        while len(row) < len(start_tokens) + random.randint(2, 5):  # Generate a row of random length
+        while len(row) < 10:  # Generate a row
             next_token = random.choice(weighted_tokens)  # Randomly select a token based on frequency
             row.append(next_token)
 
@@ -67,7 +67,7 @@ def format_pattern(rows):
     return ';\n'.join(rows) + ' ;'
 
 # Example usage
-start_row = ['k1', 'k1']  # Example starting row
+start_row = ['k1', 'p1', 'yo']  # Example starting row
 num_rows = 5  # Number of rows to generate
 
 # Generate knitting pattern

@@ -6,25 +6,24 @@ from collections import defaultdict
 def load_patterns_from_folder(folder_path):
     patterns = []
     for filename in os.listdir(folder_path):
-        if filename.endswith('.txt'):
-            with open(os.path.join(folder_path, filename), 'r') as file:
+        if filename.endswith(".txt"):
+            file_path = os.path.join(folder_path, filename)
+            with open(file_path, "r", encoding="utf-8") as file: 
                 patterns.append(file.read())
     return patterns
 
 # Step 2: Preprocess the Corpus
 # Normalize the case, split patterns, and handle commas
-corpus = ' '.join(load_patterns_from_folder('input_patterns'))  # Load all patterns from files in 'data'
-corpus = corpus.lower()  # Normalize case
+corpus = ' '.join(load_patterns_from_folder('C:\\Users\\chipr\\OneDrive\\Desktop\\final\\knit-nlp\\input_patterns'))  # Load all patterns from files in 'data'
+corpus = corpus.lower() 
 
 tokens = corpus.split()
-
-# Step 3: Build Bigrams (pairs of consecutive tokens)
 bigrams = defaultdict(list)
 
 # Create bigrams from the tokens
 for i in range(len(tokens) - 1):
-    key = tokens[i]  # Current token
-    next_token = tokens[i + 1]  # Next token
+    key = tokens[i]  
+    next_token = tokens[i + 1] 
     bigrams[key].append(next_token)
 
 # Step 4: Generate a Knitting Pattern using the Bigram Model
@@ -45,7 +44,7 @@ def generate_pattern(bigrams, start_tokens, num_rows=5):
         row = [current_token]
 
         # Generate the rest of the row based on the bigram model
-        while len(row) < random.randint(5, 10):  # Generate row of random length
+        while len(row) < 10:  # Generate row
             if current_token in bigrams:
                 next_token = random.choice(bigrams[current_token])  # Pick a random next token from bigram
                 row.append(next_token)
@@ -70,7 +69,7 @@ def format_pattern(rows):
     return ';\n'.join(rows) + ' ;'
 
 # Example usage
-start_tokens = ['k1', 'p1']
+start_tokens = ['k1', 'p1', 'yo']
 num_rows = 5  # Number of rows to generate
 
 # Generate knitting pattern

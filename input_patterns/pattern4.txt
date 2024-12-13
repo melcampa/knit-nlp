@@ -1,9 +1,0 @@
-CO 8
-Round 1: Knit around
-Round 2: ch1, 2 dc in each dc around, ss to join. (16 st)
-Round 3: ch 1, *dc in one stitch, 2 dc in next stitch* repeat around, ss to join. (24 st)
-Round 4: ch 1, *dc in 2 stitches, 2 dc in next stitch* repeat around, ss to join. (32 st)
-Round 5: ch 1, *dc in 3 stitches, 2 dc in next stitch* repeat around, ss to join. (40 st)
-Round 6: ch 3, skip 1st stitch, treble crochet around, ss to join.
-Rounds 7-8: Repeat Round 6
-Round 9 (ruffle): *Chain 5, slip stitch in next stitch* repeat around
