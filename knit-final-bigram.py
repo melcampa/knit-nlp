@@ -1,6 +1,7 @@
 import random
 import os
 from collections import defaultdict
+import re
 
 # Step 1: Load Knitting Patterns from a folder
 def load_patterns_from_folder(folder_path):
@@ -14,7 +15,28 @@ def load_patterns_from_folder(folder_path):
 
 # Step 2: Preprocess the Corpus
 # Normalize the case, split patterns, and handle commas
-corpus = ' '.join(load_patterns_from_folder('C:\\Users\\chipr\\OneDrive\\Desktop\\final\\knit-nlp\\input_patterns'))  # Load all patterns from files in 'data'
+def preprocess_corpus(corpus):
+    """
+    Extracts meaningful knitting instructions, recognizes terms like 'Cast on' and 'CO',
+    and normalizes the text.
+    """
+    # Extract rows that likely contain instructions (rows starting with "Row", "Cast on", or similar terms)
+    rows = re.findall(r'(Row \d+.*?:.*|Cast on.*|CO.*)', corpus, re.IGNORECASE)
+    
+    # Normalize the text: lowercase everything and ensure consistent spacing
+    normalized_rows = []
+    for row in rows:
+        # Replace abbreviations for clarity and normalize
+        row = row.lower()
+        row = re.sub(r'\bco\b', 'cast on', row)  # Replace 'CO' with 'cast on'
+        row = re.sub(r'[;,]', ' ', row)          # Remove punctuation like ';' and ','
+        row = re.sub(r'\s+', ' ', row.strip())   # Normalize whitespace
+        normalized_rows.append(row)
+    
+    return ' '.join(normalized_rows)
+
+raw_corpus = ' '.join(load_patterns_from_folder('C:\\Users\\chipr\\OneDrive\\Desktop\\final\\knit-nlp\\input_patterns'))  # Load all patterns from files in 'data'
+corpus = preprocess_corpus(raw_corpus)
 corpus = corpus.lower() 
 
 tokens = corpus.split()
@@ -68,8 +90,16 @@ def format_pattern(rows):
     """
     return ';\n'.join(rows) + ' ;'
 
-# Example usage
-start_tokens = ['k1', 'p1', 'yo']
+def extract_start_tokens(corpus):
+    """
+    Extract potential starting tokens for knitting patterns.
+    """
+    # Regex to capture starting tokens (e.g., 'cast on', 'row 1:')
+    matches = re.findall(r'(cast on|row \d+.*?:)', corpus, flags=re.IGNORECASE)
+    return list(set(matches))  # Remove duplicates
+
+start_tokens = extract_start_tokens(corpus)
+print("Possible starting tokens:", start_tokens)
 num_rows = 5  # Number of rows to generate
 
 # Generate knitting pattern
