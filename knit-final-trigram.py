@@ -102,7 +102,8 @@ def extract_start_tokens(corpus):
     return list(set(matches))  # Remove duplicates
 
 start_tokens = extract_start_tokens(corpus)
-print("Possible starting tokens:", start_tokens)
+print("Number of tokens:", len(tokens))
+print("Number of starting tokens:", len(start_tokens))
 num_rows = 5  # Number of rows to generate
 
 # Generate knitting pattern
@@ -112,5 +113,5 @@ generated_rows = generate_pattern(trigrams, start_tokens, num_rows)
 formatted_pattern = format_pattern(generated_rows)
 
 # Display the output
-print("Generated Knitting Pattern:")
-print(formatted_pattern)
+#print("Generated Knitting Pattern:")
+#print(formatted_pattern)
